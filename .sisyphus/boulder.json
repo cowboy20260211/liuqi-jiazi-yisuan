@@ -1,0 +1,48 @@
+{
+  "active_plan": "/root/opencode app/liuqijiazi/.sisyphus/plans/liuqi-jiazi-yisuan.md",
+  "started_at": "2026-05-08T11:55:44.502Z",
+  "session_ids": [
+    "ses_1f92adf32ffetbztFyVagj6YxC"
+  ],
+  "session_origins": {
+    "ses_1f92adf32ffetbztFyVagj6YxC": "direct"
+  },
+  "plan_name": "liuqi-jiazi-yisuan",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "项目初始化 + wrangler.toml配置",
+      "session_id": "ses_1f88c489bffeT9a03kp4Zb1gVf",
+      "agent": "Sisyphus-Junior",
+      "updated_at": "2026-05-08T17:22:35.060Z"
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "核心计算逻辑实现 (src/calculator.ts)",
+      "session_id": "ses_1f75dbccaffe4HoHnF58Jm026w",
+      "agent": "Sisyphus-Junior",
+      "updated_at": "2026-05-08T18:29:40.460Z"
+    },
+    "todo:3": {
+      "task_key": "todo:3",
+      "task_label": "3",
+      "task_title": "Vitest测试环境配置",
+      "session_id": "ses_1f722b37dffe5uER6f32LV2ltv",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-08T19:03:02.987Z"
+    },
+    "todo:4": {
+      "task_key": "todo:4",
+      "task_label": "4",
+      "task_title": "API接口实现 (/functions/api/calculate.ts)",
+      "session_id": "ses_1f69b4db6ffeOYzJ1xy9GLdQWb",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-08T21:30:56.626Z"
+    }
+  }
+}

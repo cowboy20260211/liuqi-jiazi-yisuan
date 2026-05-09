@@ -26,17 +26,24 @@ export function calculate(renming: string, sitian: string): Record<string, strin
 
   // Step 2: Calculate siren (司人) - based on sidi's yinyang
   let sirenIndex;
-  if (YINYANG[sidiIndex] === 1) { // yang - advance 1
-    sirenIndex = (sidiIndex + 1) % 12;
-  } else { // yin - retreat 1
+  if (YINYANG[sidiIndex] === 1) {
     sirenIndex = (sidiIndex - 1 + 12) % 12;
+  } else {
+    sirenIndex = (sidiIndex + 1) % 12;
   }
   const siren = DIZHI[sirenIndex];
 
-  // Step 3: Calculate bingjing (病经) - from renming to siren, then to sitian (circular)
-  // Place renming at siren's position, then count forward to sitian
-  const bingjingIndex = (sitianIndex + 12 - sirenIndex) % 12;
-  const bingjing = DIZHI[bingjingIndex];
+  // Step 3: Calculate bingjing (病经)
+  // 从人命开始向后循环检查，找到第一个等于sidian/siren/sitian的地支
+  let bingjing = '';
+  for (let i = 0; i < 12; i++) {
+    const checkIndex = (renmingIndex + i) % 12;
+    const checkDizhi = DIZHI[checkIndex];
+    if (checkDizhi === sidi || checkDizhi === siren || checkDizhi === sitian) {
+      bingjing = checkDizhi;
+      break;
+    }
+  }
 
   // Step 4: Calculate bingqi (病气) based on bingjing
   const bingqi = BINGQI_MAP[bingjing] || 'Unknown';

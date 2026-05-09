@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>六气甲子医算</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
+    h1 { color: #333; }
+    .form-group { margin-bottom: 15px; }
+    label { display: inline-block; width: 80px; }
+    select { padding: 5px 10px; font-size: 16px; }
+    button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    pre { background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>六气甲子医算</h1>
+  <div class="form-group">
+    <label for="renming">人命:</label>
+    <select id="renming"></select>
+  </div>
+  <div class="form-group">
+    <label for="sitian">司天:</label>
+    <select id="sitian"></select>
+  </div>
+  <button onclick="calculate()">计算</button>
+  <pre id="result"></pre>
+
+  <script>
+    const dizhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+    const renmingSelect = document.getElementById('renming');
+    const sitianSelect = document.getElementById('sitian');
+
+    dizhi.forEach(d => {
+      renmingSelect.innerHTML += `<option value="${d}">${d}</option>`;
+      sitianSelect.innerHTML += `<option value="${d}">${d}</option>`;
+    });
+
+    async function calculate() {
+      const renming = renmingSelect.value;
+      const sitian = sitianSelect.value;
+      const resultEl = document.getElementById('result');
+
+      try {
+        const response = await fetch('/api/calculate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ renming, sitian })
+        });
+        const data = await response.json();
+        resultEl.textContent = JSON.stringify(data, null, 2);
+        resultEl.className = '';
+      } catch (error) {
+        resultEl.textContent = '请求失败: ' + error.message;
+        resultEl.className = 'error';
+      }
+    }
+  </script>
+</body>
+</html>
